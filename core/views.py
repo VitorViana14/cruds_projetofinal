@@ -1,4 +1,7 @@
 from django.shortcuts import render
 
-def listar_alunos(request):
-    return render(request, 'alunos.html')
+def inicio(request):
+    return render(request, 'inicial.html')
+
+def aluno(request):
+    return render(request, 'aluno.html')
