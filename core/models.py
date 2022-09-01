@@ -9,7 +9,7 @@ class Carros(models.Model):
 class Detalhacarro(models.Model):
     cor = models.CharField('Cor', max_length=130)
     características= models.CharField('Caractrísticas', max_length=100)
-    Descrição = models.CharField('Descrição') 
+    Descrição = models.CharField('Descrição', max_length=150) 
 
 class Loja(models.Model):
     cidade = models.CharField('Cidade', max_length=100)
