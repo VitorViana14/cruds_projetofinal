@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from core.forms import CarrosForm
+from core.forms import Carros
 
 
 def index(request):
@@ -7,5 +7,5 @@ def index(request):
 
 def form(request):
     data = {}
-    data['form'] = CarrosForm()
+    data['form'] = Carros()
     return render(request, 'formulario.html', data)
