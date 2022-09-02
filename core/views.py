@@ -1,11 +1,18 @@
 from django.shortcuts import render
-from core.forms import Carros
+from .models import Carros
+from .models import Detalhacarro
 
 
-def index(request):
-    return render( request, 'index.html')
+def index_carros(request):
+    objetocarro = Carros.objects.all()
+    contexto = {
+        'todos_carros': objetocarro
+    }
+    return render( request, 'index.html', contexto)
 
-def form(request):
-    data = {}
-    data['form'] = Carros()
-    return render(request, 'formulario.html', data)
+def tipos_carros(request):
+    variação_carros = Detalhacarro.objects.all()
+    contexto = {
+        'modelos-carros': variação_carros 
+    }
+    return render (request, 'formulario.html', contexto)
