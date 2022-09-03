@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Carros
 from .models import Detalhacarro
+from core.models import Carros
 
 
 def index_carros(request):
@@ -16,3 +17,20 @@ def tipos_carros(request):
         'modelos-carros': variação_carros 
     }
     return render (request, 'formulario.html', contexto)
+
+def create(request):
+    form = tipos_carros(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('index_carros')
+    
+def view(request, pk):
+    data = {}
+    data['db'] = Carros.objects.get(pk=pk)
+    return render(request, 'view.html', data)
+
+def edit(request, pk):
+    data = {}
+    data['db'] = Carros.objects.get(pk=pk)
+    data['form'] = CarrosForm(instance=data['db'])
+    return render(request, 'formulario.html', data)

@@ -30,12 +30,18 @@
                     <th scope="col">Ano</th>
                 </tr>
             </thead>
+            {% for dbs in db %}
             <tbody>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <th>Id</th>
+                    <td>modelo</td>
+                    <td>marca</td>
+                    <td>ano</td>
+                    <td>
+                        <a href="" class="btn btn-dark">Visualizar</a>
+                        <a href="" class="btn btn-primary">Editar</a>
+                        <a href="" class="btn btn-denger">Deletar</a>
+                    </td>
                 </tr>
         </table>
     </div>

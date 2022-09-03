@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import index_carros, tipos_carros
+from core.views import index_carros, tipos_carros, create, view,  edit, update
 
 
 urlpatterns = [
         path('index/', index_carros, name='index_carros'),  
-        path('formulario/', tipos_carros, name='tipos_carros'), 
+        path('formulario/', tipos_carros , name='tipos_carros'), 
+        path('create', create, name='create'),
+        path('view/<int:pk>/', view, name='view'),
+        path('edit/<int:pk>/', edit, name='edit'),
+        path('update/<int:pk>/', update, name='update'), 
         path('admin/', admin.site.urls),
 ]
