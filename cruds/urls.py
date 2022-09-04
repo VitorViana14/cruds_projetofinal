@@ -15,15 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import index_carros, tipos_carros, create, view,  edit, delete
+from core.views import listar_carros, cadastrar_carros, editar_carros, remover_carros, detalhar_carro, detalhar_cadastar, detalhar_editar, detalhar_remover, listar_loja,  cadastrar_loja, editar_loja, remover_loja  
+
+
 
 
 urlpatterns = [
-        path('index/', index_carros, name='index_carros'),  
-        path('formulario/', tipos_carros , name='tipos_carros'), 
-        path('create', create, name='create'),
-        path('view/<int:pk>/', view, name='view'),
-        path('edit/<int:pk>/', edit, name='edit'),
-        path('delete/<int:pk>', delete, name='delete'), 
+        path('carros/', listar_carros, name='index_carros'),  
+        path('carros_cadastrar/', cadastrar_carros, name='cadastar_carros'),
+        path('editar_carros/<int:id>/', editar_carros, name='editar_carros'), 
+        path('remover_carros/<int:id>/', remover_carros, name='remover_carros'), 
+        path('detalhar_carro/', detalhar_carro, name='detalhar_carro'),
+        path('detalhar_cadastar/', detalhar_cadastar, name='detalhar_cadastrar'), 
+        path('detalhar_editar/<int:id>/', detalhar_editar, name='detalhar_editar'),
+        path('detalhar_remover/<int:id>/', detalhar_remover, name='detalhar_remover'),
+        path('loja/</', listar_loja, name='loja'),
+        path('cadastrar_loja/', cadastrar_loja, name='cadastar_loja'), 
+        path('editar_loja/<int:id>/', editar_loja, name='editar_loja'),
+        path('remover_loja/<int:id>/', remover_loja, name='remover_loja'),
         path('admin/', admin.site.urls),
 ]

@@ -29,7 +29,7 @@
                     <th scope="col">Ano</th>
                 </tr>
             </thead>
-           {% for dbs in db %}
+            {% for carros in todos_carros %}
             <tbody>
                 <tr>
                     <th>Id</th>
@@ -37,12 +37,12 @@
                     <td>marca</td>
                     <td>ano</td>
                     <td>
-                        <a href="/view/{dbs.id}/" class="btn btn-dark">Visualizar</a>
-                        <a href="/edit/{dbs.id}/" class="btn btn-primary">Editar</a>
-                        <a href="/delete/{dbs.id}/" class="btn btn-denger">Deletar</a>
+                        <a href="/view/{carros.todos_carros}/" class="btn btn-dark">Visualizar</a>
+                        <a href="/edit/{carros.todos_carros}/" class="btn btn-primary">Editar</a>
+                        <a href="/delete/{carros.todos_carros}/" class="btn btn-denger">Deletar</a>
                     </td>
                 </tr>
-            {% endfor %}
+                {% endfor %}
         </table>
     </div>
 

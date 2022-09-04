@@ -1,42 +1,135 @@
-from django.shortcuts import render
-from .models import Carros
-from .models import Detalhacarro
-from core.models import Carros
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .models import Carros, Detalhacarro, Loja
+from .forms import CarrosForm, DetalhacarroForm, LojaForm
 
 
 
-def index_carros(request):
-    objetocarro = Carros.objects.all()
+
+def index(request):
+    return render (request, 'index.html')
+
+def carros(request):
+    return render (request, 'formulario.html')
+
+def loja(request):
+    return render (request, 'loja.html')
+
+
+def detalhar(request):
+    return render (request, 'detalhacarro.html')
+
+    
+def listar_carros(request):
+    carros =  Carros.objects.all()
     contexto = {
-        'todos_carros': objetocarro
+        'todos_carros': carros
     }
-    return render( request, 'index.html', contexto)
+    return render(request, 'index.html', contexto)
 
-def tipos_carros(request):
-    variação_carros = Detalhacarro.objects.all()
+def cadastrar_carros(request):
+    form = CarrosForm(request.post or None)
+
+    if form.is_valid():
+        form.save()  
+        return redirect('listar_carros')
     contexto = {
-        'modelos_carros': variação_carros 
+        'form_carro': form
     }
-    return render (request, 'formulario.html', contexto)
+    return render(request, 'formulario.html', contexto)
 
-def create(request):
-    form = tipos_carros(request.POST or None)
+def editar_carros(request, id):
+    carro = Carros.objects.get(pk = id)
+
+      form = CarrosForm(request.post or None, instance=carro)
+      if form.is_valid():
+        form.save()  
+        return redirect('listar_carros')
+    contexto = {
+        'form_carro': form
+    }
+   return render(request, 'formulario.html', contexto)
+
+def remover_carros(request, id):
+    carro = Carros.objects.get(pk = id) 
+    carro.delete()
+    return redirect('listar_carros')
+
+def detalhar_carros(request):
+    carros =  Carros.objects.all()
+    contexto = {
+        'detalhar': carros
+    }
+    return render(request, 'detalharcarro.html', contexto) 
+
+def detalhar_cadastrar(request): 
+    form = DetalharForm(request.POST or None) 
+
+    if form.is_valid():
+     form.save()
+     return redirect('detalhar_carro')
+
+     contexto = {
+        'form_carro' : form 
+     }
+
+     return render(request, 'detalhar_cadastrar', contexto)
+
+def detalhar_editar(request, id):
+    carro = Carros.objects.get(pk=id)
+
+    form = DetalharForm(request.POST or None, instance = carro)
+
+    if form.is_valid():
+     form.save()
+     return redirect('detalhar_carro')
+
+     contexto = {
+        'form_carro' : form 
+     }
+
+     return render(request, 'detalhar_cadastrar', contexto)
+
+def detalhar_remover(request, id):
+    carro = Carros.objects.get(pk = id)
+    carro.delete()
+    return redirect('listar_carro')
+
+def listar_loja(request, id):
+    loja = Loja.objects.get(pk = id)
+
+    contexto = {
+        'loja': loja
+    }
+
+    return render(request, 'loja.html', contexto) or
+
+def cadastrar_loja(request)
+    form = LojaForm(request.POST or None)
+
     if form.is_valid():
         form.save()
-        return redirect('index_carros')
+        return redirect('listar_loja')
+  contexto = {
+    'form_loja': form
+  }
+   return render(request, 'cadastrar_loja.html', contexto)
+
+def editar_loja(request, id):
+    loja = Loja.objects.get(id=id)
     
-def view(request, pk):
-    data = {}
-    data[''] = Carros.objects.get(pk=pk)
-    return render(request, 'view.html', data)
+    form  = LojaForm(request.POST or None instance=loja.form)
 
-def edit(request, pk):
-    data = {}
-    data[''] = Carros.objects.get(pk=pk)
-    data['form'] = tipos_carros(instance=data[''])
-    return render(request, 'formulario.html', data)
+    if form.is_valid():
+        form.save()
+        return redirect('listar_loja')
+  contexto = {
+    'form_loja': form
+  }
+   return render(request, 'cadastrar_loja.html', contexto)
 
-def delete(request, pk): 
-    db = Carros.objects.get(pk=pk)
-    db.delete()
-    return rendirect('index_carros')
+
+def remover_carros(request, id):
+    loja = Loja.objects.get(pk = id) 
+    loja.delete()
+    return redirect('listar_carros')
