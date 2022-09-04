@@ -35,3 +35,8 @@ def edit(request, pk):
     data[''] = Carros.objects.get(pk=pk)
     data['form'] = tipos_carros(instance=data[''])
     return render(request, 'formulario.html', data)
+
+def delete(request, pk): 
+    db = Carros.objects.get(pk=pk)
+    db.delete()
+    return rendirect('index_carros')
