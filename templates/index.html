@@ -18,7 +18,6 @@
         <a href="/form" class="btn btn-success">Adicionar</a>
     </div>
 
-    {% if carro == 'Fiat Uno' %} Esse é um carro {{carro}} {% else %} Não tem carro {% endif %}
 
     <div class="col-8 m-auto pt-4 pb-2 text-center">
         <table class="table">
@@ -30,7 +29,7 @@
                     <th scope="col">Ano</th>
                 </tr>
             </thead>
-            {% for dbs in db %}
+         
             <tbody>
                 <tr>
                     <th>Id</th>

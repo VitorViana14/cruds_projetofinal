@@ -4,6 +4,7 @@ from .models import Detalhacarro
 from core.models import Carros
 
 
+
 def index_carros(request):
     objetocarro = Carros.objects.all()
     contexto = {
@@ -14,7 +15,7 @@ def index_carros(request):
 def tipos_carros(request):
     variação_carros = Detalhacarro.objects.all()
     contexto = {
-        'modelos-carros': variação_carros 
+        'modelos_carros': variação_carros 
     }
     return render (request, 'formulario.html', contexto)
 
@@ -26,11 +27,11 @@ def create(request):
     
 def view(request, pk):
     data = {}
-    data['db'] = Carros.objects.get(pk=pk)
+    data[''] = Carros.objects.get(pk=pk)
     return render(request, 'view.html', data)
 
 def edit(request, pk):
     data = {}
-    data['db'] = Carros.objects.get(pk=pk)
-    data['form'] = CarrosForm(instance=data['db'])
+    data[''] = Carros.objects.get(pk=pk)
+    data['form'] = tipos_carros(instance=data[''])
     return render(request, 'formulario.html', data)
