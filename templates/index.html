@@ -9,6 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Cruds De Carros</title>
+    <style>
+        body{
+            background-color:gray;
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -22,7 +29,7 @@
 
 
     <div class="col-8 m-auto pt-4 pb-2 text-center">
-        <table class="table">
+        <table class="table table-dark table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -41,7 +48,7 @@
                     <td>
                         <a href="/view/{carros.todos_carros}/" class="btn btn-dark">Visualizar</a>
                         <a href="/edit/{carros.todos_carros}/" class="btn btn-primary">Editar</a>
-                        <a href="/delete/{carros.todos_carros}/" class="btn btn-denger">Deletar</a>
+                        <a href="/delete/{carros.todos_carros}/" class="btn btn-danger">Deletar</a>
                     </td>
                 </tr>
                 
