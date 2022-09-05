@@ -1,8 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Carros, Detalhacarro, Loja
 from .forms import CarrosForm, DetalhacarroForm, LojaForm
-
 
 
 
@@ -21,14 +19,14 @@ def detalhar(request):
 
     
 def listar_carros(request):
-    carros =  Carros.objects.all()
+    carros = Carros.objects.all()
     contexto = {
         'todos_carros': carros
     }
     return render(request, 'index.html', contexto)
 
 def cadastrar_carros(request):
-    form = CarrosForm(request.post or None)
+    form = CarrosForm(request.POST or None)
 
     if form.is_valid():
         form.save()  
@@ -39,16 +37,16 @@ def cadastrar_carros(request):
     return render(request, 'formulario.html', contexto)
 
 def editar_carros(request, id):
-    carro = Carros.objects.get(pk = id)
+    carro = Carros.objects.get(pk=id)
 
-      form = CarrosForm(request.post or None, instance=carro)
-      if form.is_valid():
+    form = CarrosForm(request.POST or None, instance=carro)
+    if form.is_valid():
         form.save()  
         return redirect('listar_carros')
     contexto = {
-        'form_carro': form
+        'form_carro': form  
     }
-   return render(request, 'formulario.html', contexto)
+    return render(request, 'formulario.html', contexto)
 
 def remover_carros(request, id):
     carro = Carros.objects.get(pk = id) 
@@ -60,40 +58,40 @@ def detalhar_carros(request):
     contexto = {
         'detalhar': carros
     }
-    return render(request, 'detalharcarro.html', contexto) 
+    return render(request, 'detalhacarro.html', contexto) 
 
 def detalhar_cadastrar(request): 
-    form = DetalharForm(request.POST or None) 
+    form = DetalhacarroForm(request.POST or None) 
 
     if form.is_valid():
-     form.save()
-     return redirect('detalhar_carro')
+        form.save()
+        return redirect('detalhar_carros')
 
-     contexto = {
+    contexto = {
         'form_carro' : form 
      }
 
-     return render(request, 'detalhar_cadastrar', contexto)
+    return render(request, 'detalhar_cadastrar', contexto)
 
 def detalhar_editar(request, id):
     carro = Carros.objects.get(pk=id)
 
-    form = DetalharForm(request.POST or None, instance = carro)
+    form = DetalhacarroForm(request.POST or None, instance = carro)
 
     if form.is_valid():
      form.save()
-     return redirect('detalhar_carro')
+     return redirect('detalhar_carros')
 
-     contexto = {
+    contexto = {
         'form_carro' : form 
      }
 
-     return render(request, 'detalhar_cadastrar', contexto)
+    return render(request, 'detalhar_cadastrar', contexto)
 
 def detalhar_remover(request, id):
     carro = Carros.objects.get(pk = id)
     carro.delete()
-    return redirect('listar_carro')
+    return redirect('listar_carros')
 
 def listar_loja(request, id):
     loja = Loja.objects.get(pk = id)
@@ -102,34 +100,34 @@ def listar_loja(request, id):
         'loja': loja
     }
 
-    return render(request, 'loja.html', contexto) or
+    return render(request, 'loja.html', contexto) 
 
-def cadastrar_loja(request)
+def cadastrar_loja(request):
     form = LojaForm(request.POST or None)
 
     if form.is_valid():
         form.save()
         return redirect('listar_loja')
-  contexto = {
+    contexto = {
     'form_loja': form
   }
-   return render(request, 'cadastrar_loja.html', contexto)
+    return render(request, 'cadastrar_loja.html', contexto)
 
 def editar_loja(request, id):
     loja = Loja.objects.get(id=id)
     
-    form  = LojaForm(request.POST or None instance=loja.form)
+    form = LojaForm(request.POST or None, instance = loja)
 
     if form.is_valid():
         form.save()
         return redirect('listar_loja')
-  contexto = {
+    contexto = {
     'form_loja': form
   }
-   return render(request, 'cadastrar_loja.html', contexto)
+    return render(request, 'cadastrar_loja.html', contexto)
 
 
-def remover_carros(request, id):
-    loja = Loja.objects.get(pk = id) 
+def remover_loja(request, id):
+    loja = Loja.objects.get(pk=id) 
     loja.delete()
     return redirect('listar_carros')

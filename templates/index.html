@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load widget_tweaks %}
+  {% load static %}
 <html lang="pt-br">
 
 <head>
@@ -15,7 +17,7 @@
     </div>
 
     <div class="col-8 m-auto pt-3 pb-2 text-center">
-        <a href="/form" class="btn btn-success">Adicionar</a>
+        <a href="{% url 'cadastar_carros' %}" class="btn btn-success">Adicionar</a>
     </div>
 
 
@@ -29,7 +31,7 @@
                     <th scope="col">Ano</th>
                 </tr>
             </thead>
-            {% for carros in todos_carros %}
+           
             <tbody>
                 <tr>
                     <th>Id</th>
@@ -42,7 +44,7 @@
                         <a href="/delete/{carros.todos_carros}/" class="btn btn-denger">Deletar</a>
                     </td>
                 </tr>
-                {% endfor %}
+                
         </table>
     </div>
 

@@ -1,19 +1,19 @@
 from django.forms import ModelForm
-from core.models import Carros, Detalhacarro, Loja
+from .models import Carros, Detalhacarro, Loja
 
 class CarrosForm(ModelForm):
     class Meta: 
         model = Carros
-        fields = ['Modelo', 'Marca', 'Ano']
+        fields = ['modelo', 'marca', 'ano']
 
 class DetalhacarroForm(ModelForm):
     class Meta: 
         model = Detalhacarro 
-        fields = ['Cor', 'Características', 'Descrição']
+        fields = ['cor', 'características', 'descrição']
     
 
 class LojaForm(ModelForm):
     class Meta: 
         model = Loja
-        fields = ['Cidade', 'Endereço', 'Unidade']
+        fields = ['cidade', 'endereço', 'unidade']
 
