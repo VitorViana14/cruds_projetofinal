@@ -7,11 +7,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Formulário 2 </title>
 </head>
 
 <body>
  <h1>DETALHES DO CARRO</h1>
+ <div class="col-8 m-auto pt-3 pb-2 text-center">
+ <form method="post" name="form" id="form">
+            {% crsf_token %}
+            {{% form_carro %}}
+
+            <div class="form-group mt-4">Cor: {{form.cor}}</div>
+            <div class="form-group mt-4">Caracteristicas: {{form.caracteristicas}}</div>
+            <div class="form-group mt-4">Descrição: {{form.descrição}}</div>
+            <input type="submit" class="btn btn-success" value="Salvar">
+
+
+ </form>
+</div>
 </body>
 
 </html>
