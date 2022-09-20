@@ -31,7 +31,7 @@
 
         <form method="post" name="form" id="form">
             {% crsf_token %}
-            {{% form_carro %}}
+            {{ form_carro }}
 
             <div class="form-group mt-4">Modelo: {{form.modelo}}</div>
             <div class="form-group mt-4">Marca: {{form.marca}}</div>

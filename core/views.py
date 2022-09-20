@@ -48,11 +48,6 @@ def editar_carros(request, id):
     }
     return render(request, 'formulario.html', contexto)
 
-def remover_carros(request, id):
-    carro = Carros.objects.get(pk = id) 
-    carro.delete()
-    return redirect('listar_carros')
-
 def detalhar_carros(request):
     carros =  Carros.objects.all()
     contexto = {
@@ -88,11 +83,6 @@ def detalhar_editar(request, id):
 
     return render(request, 'detalhar_cadastrar', contexto)
 
-def detalhar_remover(request, id):
-    carro = Carros.objects.get(pk = id)
-    carro.delete()
-    return redirect('listar_carros')
-
 def listar_loja(request, id):
     loja = Loja.objects.get(pk = id)
 
@@ -125,9 +115,3 @@ def editar_loja(request, id):
     'form_loja': form
   }
     return render(request, 'cadastrar_loja.html', contexto)
-
-
-def remover_loja(request, id):
-    loja = Loja.objects.get(pk=id) 
-    loja.delete()
-    return redirect('listar_carros')

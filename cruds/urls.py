@@ -14,24 +14,26 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf import settings
+from unicodedata import name
+from django.conf.urls.static import static
+from core import views
 from django.urls import path
-from core.views import detalhar_carros, listar_carros, cadastrar_carros, editar_carros, remover_carros, detalhar_carros, detalhar_cadastrar, detalhar_editar, detalhar_remover, listar_loja,  cadastrar_loja, editar_loja, remover_loja  
+from core.views import detalhar_carros, listar_carros, cadastrar_carros, editar_carros, detalhar_carros, detalhar_cadastrar, detalhar_editar, listar_loja,  cadastrar_loja, editar_loja
 
 
 
 
 urlpatterns = [
+        path('' , views.index),
         path('carros/', listar_carros, name='index_carros'),  
         path('carros_cadastrar/', cadastrar_carros, name='cadastar_carros'),
         path('editar_carros/<int:id>/', editar_carros, name='editar_carros'), 
-        path('remover_carros/<int:id>/', remover_carros, name='remover_carros'), 
         path('detalhar_carro/', detalhar_carros, name='detalhar_carro'),
         path('detalhar_cadastar/', detalhar_cadastrar, name='detalhar_cadastrar'), 
         path('detalhar_editar/<int:id>/', detalhar_editar, name='detalhar_editar'),
-        path('detalhar_remover/<int:id>/', detalhar_remover, name='detalhar_remover'),
         path('loja/<int:id>/', listar_loja, name='loja'),
         path('cadastrar_loja/', cadastrar_loja, name='cadastar_loja'), 
         path('editar_loja/<int:id>/', editar_loja, name='editar_loja'),
-        path('remover_loja/<int:id>/', remover_loja, name='remover_loja'),
         path('admin/', admin.site.urls),
-]
+        ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
