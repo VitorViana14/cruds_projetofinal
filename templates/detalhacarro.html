@@ -22,7 +22,7 @@
  <h1>DETALHES DO CARRO</h1>
  <div class="col-8 m-auto pt-3 pb-2 text-center">
  <form method="post" name="form" id="form">
-            {% crsf_token %}
+            {% csrf_token %}
             {{% form_carro %}}
 
             <div class="form-group mt-4">Cor: {{form.cor}}</div>
